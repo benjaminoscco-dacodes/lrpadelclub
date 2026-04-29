@@ -130,6 +130,14 @@ function supabaseConfigOk(cfg) {
   );
 }
 
+/** SUPABASE_URL debe ser solo https://xxx.supabase.co — si incluye /rest/v1/ lo quitamos para no duplicar la ruta en el fetch. */
+function normalizeSupabaseProjectUrl(raw) {
+  if (!raw || typeof raw !== 'string') return '';
+  let u = raw.trim().replace(/\/+$/, '');
+  u = u.replace(/\/rest\/v1\/?$/i, '');
+  return u.replace(/\/+$/, '');
+}
+
 function formDataToPayload(form) {
   const fd = new FormData(form);
   const payload = {};
@@ -167,7 +175,11 @@ function pickNameFromPayload(p) {
         return;
       }
 
-      const base = cfg.url.replace(/\/$/, '');
+      const base = normalizeSupabaseProjectUrl(cfg.url);
+      if (!base) {
+        alert('SUPABASE_URL no es válida. Debe ser solo https://tu-proyecto.supabase.co (sin /rest/v1).');
+        return;
+      }
       const submitBtn = form.querySelector('[type="submit"]');
       if (submitBtn) submitBtn.disabled = true;
 
