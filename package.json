@@ -2,6 +2,6 @@
   "name": "lrpadelclub",
   "private": true,
   "scripts": {
-    "build": "node scripts/generate-config.mjs"
+    "build": "node scripts/generate-config.mjs && node scripts/sync-public.mjs"
   }
 }

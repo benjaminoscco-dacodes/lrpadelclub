@@ -4,3 +4,6 @@ desktop.ini
 
 # Generado en deploy (Vercel) o en local: copia config.example.js → config.js y rellena.
 config.js
+
+# Salida del build para Vercel (copia de los estáticos).
+public/
