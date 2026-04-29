@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Academia · Lomas del Río Pádel</title>
+<meta name="description" content="Academia formal con curricula por nivel: infantil, adulto principiante/intermedio, avanzado y clases privadas. Coaches certificados.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+<style>
+.curriculum {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 50px;
+}
+.curriculum-side {
+  background: var(--paper); padding: 40px; border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.curriculum-side h3 { margin-bottom: 18px; }
+.level-list { list-style: none; }
+.level-list li {
+  padding: 16px 0 16px 40px; border-bottom: 1px solid var(--line);
+  position: relative;
+}
+.level-list li:last-child { border-bottom: none; }
+.level-list li::before {
+  content: counter(item); counter-increment: item;
+  position: absolute; left: 0; top: 16px;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--green-900); color: var(--gold-400);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 12px;
+}
+.level-list { counter-reset: item; }
+.level-list .lvl-name { font-weight: 700; color: var(--green-900); display: block; margin-bottom: 2px; }
+.level-list .lvl-desc { color: var(--muted); font-size: 14px; }
+
+.schedule-block {
+  background: var(--paper); border-radius: var(--radius-lg);
+  padding: 40px; box-shadow: var(--shadow-sm);
+}
+.schedule-block h3 { margin-bottom: 18px; }
+.day-row {
+  display: grid; grid-template-columns: 100px 1fr;
+  gap: 18px; padding: 16px 0; border-bottom: 1px dashed var(--line);
+  align-items: center;
+}
+.day-row:last-child { border-bottom: none; }
+.day-row .day { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--gold-700); }
+.slot-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.slot-tag {
+  font-size: 12px; padding: 6px 10px;
+  background: var(--cream); border: 1px solid var(--line);
+  border-radius: 8px; color: var(--green-900); font-weight: 600;
+}
+.slot-tag.kids { background: var(--gold-100); border-color: var(--gold-500); color: var(--gold-700); }
+.slot-tag.adult { background: var(--green-50); border-color: var(--green-700); color: var(--green-900); }
+
+.coach-strip {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 40px;
+}
+
+.package-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 30px;
+}
+.package {
+  background: var(--paper); border-radius: var(--radius-lg);
+  padding: 32px 26px; box-shadow: var(--shadow-sm);
+  border: 1px solid var(--line); transition: all .25s;
+}
+.package:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.package h4 { font-family: var(--serif); font-size: 22px; margin-bottom: 8px; color: var(--green-900); }
+.package .age { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold-700); font-weight: 700; margin-bottom: 16px; }
+.package .price-num { font-family: var(--serif); font-size: 40px; color: var(--green-900); line-height: 1; }
+.package .per { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+.package ul { list-style: none; margin-bottom: 24px; }
+.package ul li { padding: 7px 0; padding-left: 22px; position: relative; font-size: 13px; }
+.package ul li::before { content: '✓'; position: absolute; left: 0; color: var(--green-700); font-weight: 700; }
+.package .btn { width: 100%; justify-content: center; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <div class="left"><span>Lomas del Río · Naucalpan, EdoMex</span></div>
+    <div class="right"><span>Lun–Dom · 7:00 a 23:00</span><a href="#login">Acceso Socios</a></div>
+  </div>
+</div>
+
+<div class="nav-wrap">
+<nav class="nav" id="nav">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <img class="mark" src="assets/logo-mark.svg" alt="">
+      <span class="name"><span class="top">Lomas del Río</span><span class="bot">PÁDEL</span></span>
+    </a>
+    <div class="menu">
+      <a href="index.html#club">El Club</a>
+      <a href="index.html#canchas">Instalaciones</a>
+      <a href="membresias.html">Membresías</a>
+      <a href="academia.html">Academia</a>
+      <a href="torneos.html">Torneos</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+    <div class="cta-group">
+      <a href="reservas.html" class="btn btn-gold">Reservar cancha</a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+</div>
+
+<section class="page-hero" style="background: linear-gradient(120deg, rgba(10,61,42,0.85), rgba(10,61,42,0.5)), url('https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=1600&q=80') center/cover;">
+  <div class="container">
+    <div class="crumbs"><a href="index.html">Inicio</a><span class="sep">/</span><span>Academia</span></div>
+    <span class="eyebrow" style="color:var(--gold-400);">Escuela formal de pádel</span>
+    <h1>De primer raquetazo<br>a competidor</h1>
+    <p>Curricula formal estructurada por nivel y edad. Coaches certificados, video-análisis y plan trimestral de progreso.</p>
+  </div>
+</section>
+
+<section class="bg-cream" id="programas">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Tres divisiones</span>
+      <h2>Encuentra tu programa</h2>
+      <p>Cada división tiene curricula propia, horarios fijos y calendario trimestral. Pago institucional, factura inmediata.</p>
+    </div>
+    <div class="academy-grid">
+      <div class="academy-card reveal" id="infantil">
+        <div class="img" data-age="6 — 17 años"><img src="https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=900&q=80" alt=""></div>
+        <div class="body">
+          <h3>Academia Infantil</h3>
+          <p class="desc">Formación técnica con 8 clases mensuales en grupos por nivel y edad. Calendario trimestral con festival al cierre.</p>
+          <div class="features">
+            <span class="feature">8 clases / mes</span>
+            <span class="feature">Grupos por nivel</span>
+            <span class="feature">Festival trimestral</span>
+            <span class="feature">Reporte de progreso</span>
+          </div>
+          <div class="price-row">
+            <div><div class="price-num">$1,800</div><div style="font-size:12px;color:var(--muted);">/ alumno / mes</div></div>
+            <a href="#inscripcion" class="btn btn-ghost">Inscribir</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="academy-card reveal" id="adulto">
+        <div class="img" data-age="Adulto · Inicial"><img src="https://images.unsplash.com/photo-1669104125030-b91f7d2cd80b?w=900&q=80" alt=""></div>
+        <div class="body">
+          <h3>Adulto Principiante / Intermedio</h3>
+          <p class="desc">Construye base técnica y táctica para disfrutar el juego social. Grupos de máximo 4 alumnos.</p>
+          <div class="features">
+            <span class="feature">8 clases / mes</span>
+            <span class="feature">Grupos de 4</span>
+            <span class="feature">Plan trimestral</span>
+            <span class="feature">Match práctica</span>
+          </div>
+          <div class="price-row">
+            <div><div class="price-num">$2,400</div><div style="font-size:12px;color:var(--muted);">/ alumno / mes</div></div>
+            <a href="#inscripcion" class="btn btn-ghost">Inscribir</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="academy-card reveal" id="privada">
+        <div class="img" data-age="Avanzado · Privadas"><img src="https://images.unsplash.com/photo-1580087256394-dc596e1c8f4f?w=900&q=80" alt=""></div>
+        <div class="body">
+          <h3>Avanzado · Clases Privadas</h3>
+          <p class="desc">Atención individual con video-análisis, plan personalizado y seguimiento mes a mes.</p>
+          <div class="features">
+            <span class="feature">1 a 1</span>
+            <span class="feature">Video análisis</span>
+            <span class="feature">Plan personal</span>
+            <span class="feature">Clínicas exclusivas</span>
+          </div>
+          <div class="price-row">
+            <div><div class="price-num">$700</div><div style="font-size:12px;color:var(--muted);">/ sesión 60 min</div></div>
+            <a href="#inscripcion" class="btn btn-ghost">Reservar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM & SCHEDULE -->
+<section class="bg-paper">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Curricula</span>
+      <h2>Niveles y horarios</h2>
+      <p>Sistema de 6 niveles que te llevan paso a paso desde tu primer raquetazo hasta competir en torneos signature.</p>
+    </div>
+    <div class="curriculum">
+      <div class="curriculum-side reveal">
+        <h3>Niveles del jugador</h3>
+        <ul class="level-list">
+          <li><span class="lvl-name">Iniciación</span><span class="lvl-desc">Postura, agarre, peloteo de fondo.</span></li>
+          <li><span class="lvl-name">Básico</span><span class="lvl-desc">Bandeja, volea, salida de pared lateral.</span></li>
+          <li><span class="lvl-name">Intermedio</span><span class="lvl-desc">Víbora, globo, lectura del rival.</span></li>
+          <li><span class="lvl-name">Intermedio Avanzado</span><span class="lvl-desc">Tácticas de juego en pareja, posicionamiento.</span></li>
+          <li><span class="lvl-name">Avanzado</span><span class="lvl-desc">Remates, ritmo, control emocional, video-análisis.</span></li>
+          <li><span class="lvl-name">Competitivo</span><span class="lvl-desc">Torneo, periodización, preparación física específica.</span></li>
+        </ul>
+      </div>
+      <div class="schedule-block reveal">
+        <h3>Horarios de academia</h3>
+        <div class="day-row">
+          <div class="day">Lunes</div>
+          <div class="slot-tags">
+            <span class="slot-tag kids">15:00 Infantil</span>
+            <span class="slot-tag kids">16:30 Infantil</span>
+            <span class="slot-tag adult">19:00 Adulto Int.</span>
+            <span class="slot-tag adult">20:30 Avanzado</span>
+          </div>
+        </div>
+        <div class="day-row">
+          <div class="day">Martes</div>
+          <div class="slot-tags">
+            <span class="slot-tag adult">7:00 Adulto Inicial</span>
+            <span class="slot-tag adult">9:00 Damas</span>
+            <span class="slot-tag kids">15:00 Infantil</span>
+            <span class="slot-tag adult">19:30 Competitivo</span>
+          </div>
+        </div>
+        <div class="day-row">
+          <div class="day">Miércoles</div>
+          <div class="slot-tags">
+            <span class="slot-tag kids">15:00 Infantil</span>
+            <span class="slot-tag kids">16:30 Infantil</span>
+            <span class="slot-tag adult">19:00 Intermedio</span>
+            <span class="slot-tag adult">20:30 Avanzado</span>
+          </div>
+        </div>
+        <div class="day-row">
+          <div class="day">Jueves</div>
+          <div class="slot-tags">
+            <span class="slot-tag adult">7:00 Adulto Inicial</span>
+            <span class="slot-tag adult">9:00 Damas</span>
+            <span class="slot-tag kids">15:00 Infantil</span>
+            <span class="slot-tag adult">19:30 Competitivo</span>
+          </div>
+        </div>
+        <div class="day-row">
+          <div class="day">Viernes</div>
+          <div class="slot-tags">
+            <span class="slot-tag kids">15:00 Infantil</span>
+            <span class="slot-tag adult">19:00 Match práctica</span>
+          </div>
+        </div>
+        <div class="day-row">
+          <div class="day">Sábado</div>
+          <div class="slot-tags">
+            <span class="slot-tag kids">9:00 Mini-pádel</span>
+            <span class="slot-tag kids">10:30 Infantil</span>
+            <span class="slot-tag adult">12:00 Adulto</span>
+            <span class="slot-tag" style="background:var(--gold-500); border-color:var(--gold-500); color:var(--green-900);">14:00 Clínica</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="bg-cream" id="paquetes">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Paquetes</span>
+      <h2>Elige cómo aprender</h2>
+      <p>Pagos mensuales con cargo automático. Reposición de clases por evento médico justificado.</p>
+    </div>
+    <div class="package-grid">
+      <div class="package reveal">
+        <h4>Mini Pádel</h4>
+        <div class="age">6 — 9 años</div>
+        <div class="price-num">$1,500</div>
+        <div class="per">/ mes</div>
+        <ul>
+          <li>8 clases mensuales</li>
+          <li>Grupos de 6 niños</li>
+          <li>Material adaptado</li>
+          <li>Festival trimestral</li>
+        </ul>
+        <a href="#inscripcion" class="btn btn-ghost">Inscribir</a>
+      </div>
+      <div class="package reveal" style="border:2px solid var(--gold-500);">
+        <h4>Infantil</h4>
+        <div class="age">10 — 17 años</div>
+        <div class="price-num">$1,800</div>
+        <div class="per">/ mes</div>
+        <ul>
+          <li>8 clases mensuales</li>
+          <li>Grupos por nivel</li>
+          <li>Reporte de progreso</li>
+          <li>Inscripción a torneo infantil</li>
+        </ul>
+        <a href="#inscripcion" class="btn btn-gold">Inscribir</a>
+      </div>
+      <div class="package reveal">
+        <h4>Adulto Grupal</h4>
+        <div class="age">Inicial · Intermedio · Avanzado</div>
+        <div class="price-num">$2,400</div>
+        <div class="per">/ mes</div>
+        <ul>
+          <li>8 clases mensuales</li>
+          <li>Grupos máximo 4</li>
+          <li>Plan trimestral</li>
+          <li>Match práctica incluida</li>
+        </ul>
+        <a href="#inscripcion" class="btn btn-ghost">Inscribir</a>
+      </div>
+      <div class="package reveal">
+        <h4>Privada · Clínica</h4>
+        <div class="age">Todos los niveles</div>
+        <div class="price-num">$700</div>
+        <div class="per">/ sesión</div>
+        <ul>
+          <li>Atención 1 a 1</li>
+          <li>Video análisis incluido</li>
+          <li>Plan personalizado</li>
+          <li>Clínicas con coach invitado $1,200</li>
+        </ul>
+        <a href="#inscripcion" class="btn btn-ghost">Reservar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COACHES -->
+<section class="bg-paper">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Equipo</span>
+      <h2>Tus coaches</h2>
+      <p>Director Deportivo y staff de coaches con certificación, experiencia competitiva y vocación pedagógica.</p>
+    </div>
+    <div class="coach-strip">
+      <div class="coach reveal">
+        <div class="photo">
+          <span class="level-badge">Head Coach</span>
+          <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=600&q=80" alt="">
+        </div>
+        <h4>Julio Hernández</h4>
+        <span class="role">Director Deportivo</span>
+      </div>
+      <div class="coach reveal">
+        <div class="photo">
+          <span class="level-badge">Pro Coach</span>
+          <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=600&q=80" alt="">
+        </div>
+        <h4>Diego Martínez</h4>
+        <span class="role">Adulto Avanzado</span>
+      </div>
+      <div class="coach reveal">
+        <div class="photo">
+          <span class="level-badge">Junior</span>
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80" alt="">
+        </div>
+        <h4>Andrea Salinas</h4>
+        <span class="role">Academia Infantil</span>
+      </div>
+      <div class="coach reveal">
+        <div class="photo">
+          <span class="level-badge">Coach</span>
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="">
+        </div>
+        <h4>Esteban Ríos</h4>
+        <span class="role">Inicial / Intermedio</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSCRIPCION -->
+<section class="bg-cream" id="inscripcion">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Inscripción</span>
+      <h2>Reserva tu cupo</h2>
+      <p>Te agendamos clase de prueba gratuita para validar nivel y grupo ideal. Confirmamos en menos de 1 hora hábil.</p>
+    </div>
+    <form class="contact-form reveal" style="max-width:720px; margin:0 auto;" onsubmit="event.preventDefault(); alert('¡Recibido! Te contactamos en menos de 1 hora hábil.');">
+      <h3>Datos del alumno</h3>
+      <div class="form-row">
+        <div class="field"><label>Nombre del alumno</label><input type="text" placeholder="Nombre completo"></div>
+        <div class="field"><label>Edad</label><input type="number" placeholder="Edad"></div>
+      </div>
+      <h3 style="margin-top: 18px;">Programa</h3>
+      <div class="form-row">
+        <div class="field">
+          <label>Programa de interés</label>
+          <select><option>Mini Pádel (6-9 años)</option><option>Infantil (10-17 años)</option><option>Adulto Inicial</option><option>Adulto Intermedio</option><option>Adulto Avanzado</option><option>Clase privada</option><option>Clínica con coach invitado</option></select>
+        </div>
+        <div class="field">
+          <label>Experiencia previa</label>
+          <select><option>Nunca he jugado</option><option>Jugador casual</option><option>Tomé clases antes</option><option>Compito en torneos</option></select>
+        </div>
+      </div>
+      <h3 style="margin-top: 18px;">Tutor o jugador adulto</h3>
+      <div class="form-row">
+        <div class="field"><label>Nombre del responsable</label><input type="text" placeholder="Nombre"></div>
+        <div class="field"><label>Teléfono</label><input type="tel" placeholder="55 0000 0000"></div>
+      </div>
+      <div class="field" style="margin-bottom: 16px;">
+        <label>Correo</label>
+        <input type="email" placeholder="tu@email.com">
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Solicitar clase de prueba gratuita →</button>
+    </form>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="brand"><img class="mark" src="assets/logo-mark.svg" alt="" style="width:56px;height:56px;"><span class="name"><span class="top">Lomas del Río</span><span class="bot">PÁDEL</span></span></a>
+        <p class="about-foot">El club deportivo de referencia del corredor Naucalpan–Satélite.</p>
+      </div>
+      <div><h5>Club</h5><ul><li><a href="index.html#club">Sobre nosotros</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+      <div><h5>Deporte</h5><ul><li><a href="reservas.html">Reservar</a></li><li><a href="membresias.html">Membresías</a></li><li><a href="academia.html">Academia</a></li><li><a href="torneos.html">Torneos</a></li></ul></div>
+      <div><h5>Empresas</h5><ul><li><a href="index.html#eventos">Eventos privados</a></li><li><a href="index.html#patrocinios">Patrocinios</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><div>© 2026 Club de Pádel Lomas del Río · Naucalpan, EdoMex</div><div><a href="#">Aviso de privacidad</a></div></div>
+  </div>
+</footer>
+
+<a href="https://wa.me/525500000000" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885z"/></svg>
+</a>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Membresías · Lomas del Río Pádel</title>
+<meta name="description" content="Cuatro niveles de membresía con descuentos permanentes, clases incluidas y prioridad en reservas. Únete a la comunidad.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+<style>
+.compare-table {
+  background: var(--paper); border-radius: var(--radius-lg);
+  overflow: hidden; box-shadow: var(--shadow-md);
+  margin-top: 30px;
+}
+.compare-table table { width: 100%; border-collapse: collapse; }
+.compare-table th { padding: 22px 16px; text-align: center; background: var(--green-900); color: var(--paper); font-family: var(--serif); font-size: 18px; font-weight: 500; border-right: 1px solid rgba(255,255,255,0.1); }
+.compare-table th:first-child { text-align: left; padding-left: 26px; background: var(--green-900); }
+.compare-table th.featured-col { background: var(--gold-500); color: var(--green-900); }
+.compare-table td { padding: 16px; text-align: center; font-size: 14px; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); color: var(--ink); }
+.compare-table td:first-child { text-align: left; font-weight: 600; color: var(--green-900); padding-left: 26px; }
+.compare-table tr:hover td { background: var(--cream); }
+.compare-table .check { color: var(--green-700); font-size: 18px; }
+.compare-table .x { color: #d4d0c4; font-size: 18px; }
+.compare-table tr.price-row td { font-family: var(--serif); font-size: 22px; font-weight: 600; color: var(--gold-700); padding: 22px; }
+.compare-table tr.cta-row td { padding: 24px 16px; border-bottom: none; }
+
+.benefit-banner {
+  background: linear-gradient(135deg, var(--gold-100), var(--paper));
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  display: flex; align-items: center; justify-content: space-between; gap: 30px;
+  margin-top: 50px; flex-wrap: wrap;
+}
+.benefit-banner h3 { font-family: var(--serif); font-size: 26px; color: var(--green-900); }
+.benefit-banner p { color: var(--muted); margin-top: 6px; }
+
+.signup-form {
+  background: var(--paper); border-radius: var(--radius-lg);
+  padding: 50px; box-shadow: var(--shadow-md);
+  max-width: 720px; margin: 0 auto;
+}
+.signup-form h3 { margin-bottom: 8px; }
+.tier-radio { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 20px 0; }
+.tier-radio label {
+  cursor: pointer; padding: 16px 12px; text-align: center;
+  border: 2px solid var(--line); border-radius: 10px; font-size: 13px; font-weight: 600;
+  transition: all .2s;
+}
+.tier-radio input { display: none; }
+.tier-radio input:checked + label, .tier-radio label:hover { border-color: var(--gold-500); background: var(--gold-100); color: var(--green-900); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <div class="left"><span>Lomas del Río · Naucalpan, EdoMex</span></div>
+    <div class="right"><span>Lun–Dom · 7:00 a 23:00</span><a href="#login">Acceso Socios</a></div>
+  </div>
+</div>
+
+<div class="nav-wrap">
+<nav class="nav" id="nav">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <img class="mark" src="assets/logo-mark.svg" alt="">
+      <span class="name"><span class="top">Lomas del Río</span><span class="bot">PÁDEL</span></span>
+    </a>
+    <div class="menu">
+      <a href="index.html#club">El Club</a>
+      <a href="index.html#canchas">Instalaciones</a>
+      <a href="membresias.html">Membresías</a>
+      <a href="academia.html">Academia</a>
+      <a href="torneos.html">Torneos</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+    <div class="cta-group">
+      <a href="reservas.html" class="btn btn-gold">Reservar cancha</a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+</div>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="crumbs"><a href="index.html">Inicio</a><span class="sep">/</span><span>Membresías</span></div>
+    <span class="eyebrow" style="color:var(--gold-400);">Plan de pertenencia</span>
+    <h1>Forma parte<br>de la comunidad</h1>
+    <p>Cuatro niveles diseñados para cada perfil de jugador. Descuentos permanentes, clases incluidas, prioridad de reserva y eventos exclusivos.</p>
+  </div>
+</section>
+
+<section class="bg-cream">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Elige tu plan</span>
+      <h2>Membresías 2026</h2>
+      <p>Todos los planes se cobran por suscripción mensual con cargo automático. Sin permanencia mínima — cancela en cualquier momento.</p>
+    </div>
+
+    <div class="membership-grid">
+      <div class="membership reveal" id="bronce">
+        <h3>Bronce</h3>
+        <p class="tag-line">Para el jugador casual que ama tener el club a la mano.</p>
+        <div class="price"><span class="price-mxn">MXN</span><span class="price-num">650</span><span class="price-period">/mes</span></div>
+        <div class="price-cupo">Cupo · 200 socios</div>
+        <ul>
+          <li>Reserva con 7 días de anticipación</li>
+          <li>10% de descuento en horas-cancha</li>
+          <li>10% de descuento en pro shop y café</li>
+          <li>Acceso al ranking interno</li>
+          <li>Newsletter mensual</li>
+          <li>Invitación a eventos sociales</li>
+        </ul>
+        <a href="#signup" class="btn btn-ghost">Inscribirme</a>
+      </div>
+
+      <div class="membership reveal" id="plata">
+        <h3>Plata</h3>
+        <p class="tag-line">Tu club todas las semanas, con clase grupal incluida cada mes.</p>
+        <div class="price"><span class="price-mxn">MXN</span><span class="price-num">1,500</span><span class="price-period">/mes</span></div>
+        <div class="price-cupo">Cupo · 120 socios</div>
+        <ul>
+          <li>Reserva con 14 días de anticipación</li>
+          <li>20% en horas y compras</li>
+          <li>1 clase grupal incluida al mes</li>
+          <li>Acceso prioritario a torneos</li>
+          <li>Lista privada de WhatsApp</li>
+          <li>Promociones flash exclusivas</li>
+        </ul>
+        <a href="#signup" class="btn btn-ghost">Inscribirme</a>
+      </div>
+
+      <div class="membership featured reveal" id="oro">
+        <span class="ribbon">Más popular</span>
+        <h3>Oro</h3>
+        <p class="tag-line">El nivel del jugador comprometido, con privilegios completos.</p>
+        <div class="price"><span class="price-mxn">MXN</span><span class="price-num">3,200</span><span class="price-period">/mes</span></div>
+        <div class="price-cupo">Cupo · 60 socios</div>
+        <ul>
+          <li>Reserva con 21 días de anticipación</li>
+          <li>30% de descuento permanente</li>
+          <li>4 clases grupales al mes</li>
+          <li>1 hora gratis/semana off-peak</li>
+          <li>Locker personal y servicio de toallas</li>
+          <li>Invitación a eventos VIP</li>
+          <li>Cumpleaños socio: 1 hora regalo</li>
+        </ul>
+        <a href="#signup" class="btn btn-gold">Inscribirme</a>
+      </div>
+
+      <div class="membership reveal" id="familiar">
+        <h3>Familiar</h3>
+        <p class="tag-line">Una membresía para toda la familia, con academia infantil incluida.</p>
+        <div class="price"><span class="price-mxn">MXN</span><span class="price-num">5,800</span><span class="price-period">/mes</span></div>
+        <div class="price-cupo">Cupo · 30 familias</div>
+        <ul>
+          <li>Membresía Oro para 4 personas</li>
+          <li>Paquete academia infantil incluido</li>
+          <li>20% descuento en cumpleaños</li>
+          <li>Eventos exclusivos para familias</li>
+          <li>Estacionamiento prioritario</li>
+          <li>Coach familiar al año</li>
+        </ul>
+        <a href="#signup" class="btn btn-ghost">Inscribirme</a>
+      </div>
+    </div>
+
+    <!-- Resident benefit -->
+    <div class="benefit-banner reveal">
+      <div>
+        <h3>🏡 Beneficio residentes Lomas del Río</h3>
+        <p>Si vives en el fraccionamiento, tienes <strong style="color: var(--green-800)">15% adicional de descuento</strong> en cualquier membresía y prioridad de reserva sobre público general.</p>
+      </div>
+      <a href="contacto.html" class="btn btn-primary">Validar mi residencia</a>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE TABLE -->
+<section class="bg-paper">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Comparativa</span>
+      <h2>Encuentra tu plan ideal</h2>
+      <p>Un vistazo lado a lado a todos los beneficios.</p>
+    </div>
+    <div class="compare-table reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Beneficio</th>
+            <th>Bronce</th>
+            <th>Plata</th>
+            <th class="featured-col">Oro</th>
+            <th>Familiar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="price-row">
+            <td>Cuota mensual</td>
+            <td>$650</td>
+            <td>$1,500</td>
+            <td>$3,200</td>
+            <td>$5,800</td>
+          </tr>
+          <tr><td>Anticipación de reserva</td><td>7 días</td><td>14 días</td><td>21 días</td><td>21 días</td></tr>
+          <tr><td>Descuento en horas-cancha</td><td>10%</td><td>20%</td><td>30%</td><td>30%</td></tr>
+          <tr><td>Descuento en Pro Shop & F&B</td><td>10%</td><td>20%</td><td>30%</td><td>30%</td></tr>
+          <tr><td>Clases grupales incluidas</td><td>—</td><td>1/mes</td><td>4/mes</td><td>4/mes c/u</td></tr>
+          <tr><td>Hora gratis off-peak/semana</td><td><span class="x">✕</span></td><td><span class="x">✕</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>Locker y toallas</td><td><span class="x">✕</span></td><td><span class="x">✕</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>Acceso prioritario torneos</td><td><span class="x">✕</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>Eventos VIP exclusivos</td><td><span class="x">✕</span></td><td><span class="x">✕</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>Cobertura familiar (4 personas)</td><td><span class="x">✕</span></td><td><span class="x">✕</span></td><td><span class="x">✕</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>Academia infantil incluida</td><td><span class="x">✕</span></td><td><span class="x">✕</span></td><td><span class="x">✕</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>Estacionamiento prioritario</td><td><span class="x">✕</span></td><td><span class="x">✕</span></td><td><span class="x">✕</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>Cumpleaños socio (1h regalo)</td><td><span class="x">✕</span></td><td><span class="x">✕</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+          <tr class="cta-row">
+            <td></td>
+            <td><a href="#signup" class="btn btn-ghost" style="font-size:12px; padding:10px 18px;">Elegir</a></td>
+            <td><a href="#signup" class="btn btn-ghost" style="font-size:12px; padding:10px 18px;">Elegir</a></td>
+            <td><a href="#signup" class="btn btn-gold" style="font-size:12px; padding:10px 18px;">Elegir</a></td>
+            <td><a href="#signup" class="btn btn-ghost" style="font-size:12px; padding:10px 18px;">Elegir</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNUP FORM -->
+<section id="signup" class="bg-cream">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Inscripción</span>
+      <h2>Empieza hoy</h2>
+      <p>Llena el formulario y recibe tu link de pago en menos de 1 hora hábil. Tu primera reserva está lista en cuanto se procese.</p>
+    </div>
+    <form class="signup-form reveal" onsubmit="event.preventDefault(); alert('¡Recibido! Te contactaremos en menos de 1 hora.');">
+      <h3>Datos personales</h3>
+      <div class="form-row">
+        <div class="field"><label>Nombre completo</label><input type="text" placeholder="Tu nombre"></div>
+        <div class="field"><label>Teléfono</label><input type="tel" placeholder="55 0000 0000"></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Correo electrónico</label><input type="email" placeholder="tu@email.com"></div>
+        <div class="field">
+          <label>¿Eres residente?</label>
+          <select><option>No</option><option>Sí, Lomas del Río</option><option>Sí, fraccionamiento adyacente</option></select>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 24px;">Plan de membresía</h3>
+      <div class="tier-radio">
+        <input type="radio" name="tier" id="t1"><label for="t1">Bronce<br><small style="color:var(--muted)">$650/mes</small></label>
+        <input type="radio" name="tier" id="t2"><label for="t2">Plata<br><small style="color:var(--muted)">$1,500/mes</small></label>
+        <input type="radio" name="tier" id="t3" checked><label for="t3">Oro<br><small style="color:var(--muted)">$3,200/mes</small></label>
+        <input type="radio" name="tier" id="t4"><label for="t4">Familiar<br><small style="color:var(--muted)">$5,800/mes</small></label>
+      </div>
+
+      <div class="field" style="margin-bottom: 16px;">
+        <label>¿Cómo te enteraste de nosotros?</label>
+        <select><option>Recomendación</option><option>Redes sociales</option><option>Búsqueda web</option><option>Residente del fraccionamiento</option><option>Evento o torneo</option></select>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Continuar a verificación →</button>
+      <p style="font-size: 12px; color: var(--muted); text-align: center; margin-top: 16px;">Al continuar aceptas el reglamento del club y la política de cobros electrónicos.</p>
+    </form>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="bg-paper">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2>Antes de inscribirte</h2>
+    </div>
+    <div class="faq reveal">
+      <div class="faq-item"><div class="faq-q">¿Hay permanencia mínima?</div><div class="faq-a"><p>No. Todas nuestras membresías se cobran mes a mes y puedes cancelar con 30 días de anticipación, sin penalización.</p></div></div>
+      <div class="faq-item"><div class="faq-q">¿Puedo cambiar de nivel?</div><div class="faq-a"><p>Sí, puedes subir o bajar de nivel en cualquier momento. El cambio se aplica al inicio del siguiente período de cobro.</p></div></div>
+      <div class="faq-item"><div class="faq-q">¿Cómo funciona la prioridad de reserva?</div><div class="faq-a"><p>Los socios pueden reservar antes que el público general según su nivel: Bronce 7 días, Plata 14, Oro y Familiar 21 días de anticipación. Las canchas que no se reservan en ventana exclusiva se liberan al público.</p></div></div>
+      <div class="faq-item"><div class="faq-q">¿Las clases incluidas se acumulan?</div><div class="faq-a"><p>No. Las clases del mes se usan en el mes calendario. Te enviamos un recordatorio antes del corte para que no pierdas ninguna.</p></div></div>
+      <div class="faq-item"><div class="faq-q">¿Puedo invitar amigos no socios?</div><div class="faq-a"><p>Sí. Los socios Oro y Familiar tienen 2 invitaciones gratis al mes. Tus invitados pagan tarifa pública y disfrutan el club como tú.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="brand">
+          <img class="mark" src="assets/logo-mark.svg" alt="" style="width:56px;height:56px;">
+          <span class="name"><span class="top">Lomas del Río</span><span class="bot">PÁDEL</span></span>
+        </a>
+        <p class="about-foot">El club deportivo de referencia del corredor Naucalpan–Satélite.</p>
+      </div>
+      <div><h5>Club</h5><ul><li><a href="index.html#club">Sobre nosotros</a></li><li><a href="index.html#canchas">Instalaciones</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+      <div><h5>Deporte</h5><ul><li><a href="reservas.html">Reservar</a></li><li><a href="membresias.html">Membresías</a></li><li><a href="academia.html">Academia</a></li><li><a href="torneos.html">Torneos</a></li></ul></div>
+      <div><h5>Empresas</h5><ul><li><a href="index.html#eventos">Eventos privados</a></li><li><a href="index.html#patrocinios">Patrocinios</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><div>© 2026 Club de Pádel Lomas del Río · Naucalpan, EdoMex</div><div><a href="#">Aviso de privacidad</a></div></div>
+  </div>
+</footer>
+
+<a href="https://wa.me/525500000000" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-1.607z"/></svg>
+</a>
+
+<script src="script.js"></script>
+</body>
+</html>

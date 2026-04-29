@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Torneos & Ligas · Lomas del Río Pádel</title>
+<meta name="description" content="Calendario de torneos, ligas semestrales y el Lomas del Río Open. Inscripciones digitales, ranking en tiempo real.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+<style>
+.filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; justify-content: center; }
+.filter-pill {
+  padding: 10px 18px; border: 1px solid var(--line); background: var(--paper);
+  border-radius: 999px; font-size: 13px; font-weight: 600; color: var(--green-900);
+  cursor: pointer; transition: all .2s;
+}
+.filter-pill:hover { border-color: var(--gold-500); }
+.filter-pill.active { background: var(--green-900); color: var(--gold-400); border-color: var(--green-900); }
+
+.ranking-table {
+  background: var(--paper); border-radius: var(--radius-lg);
+  overflow: hidden; box-shadow: var(--shadow-sm);
+}
+.ranking-table table { width: 100%; border-collapse: collapse; }
+.ranking-table th { padding: 18px; text-align: left; background: var(--green-900); color: var(--gold-400); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; }
+.ranking-table th:nth-child(3), .ranking-table th:nth-child(4) { text-align: right; }
+.ranking-table td { padding: 16px 18px; border-bottom: 1px solid var(--line); font-size: 15px; }
+.ranking-table td:nth-child(3), .ranking-table td:nth-child(4) { text-align: right; font-weight: 600; }
+.ranking-table .rank-num {
+  display: inline-flex; width: 32px; height: 32px; align-items: center; justify-content: center;
+  background: var(--cream); border-radius: 50%; font-family: var(--serif); font-weight: 700; color: var(--green-900);
+}
+.ranking-table tr:nth-child(1) .rank-num { background: var(--gold-500); color: var(--green-900); }
+.ranking-table tr:nth-child(2) .rank-num { background: #d3d3d3; color: var(--ink); }
+.ranking-table tr:nth-child(3) .rank-num { background: #cd7f32; color: white; }
+.ranking-table .player { display: inline-flex; align-items: center; gap: 12px; }
+.ranking-table .avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+.ranking-table .points { color: var(--gold-700); }
+
+.format-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 50px; }
+.format-card {
+  background: var(--paper); padding: 36px; border-radius: var(--radius-lg);
+  text-align: center; border: 1px solid var(--line);
+  transition: transform .25s;
+}
+.format-card:hover { transform: translateY(-4px); }
+.format-card .ico {
+  width: 64px; height: 64px; margin: 0 auto 18px;
+  background: var(--green-900); color: var(--gold-400);
+  border-radius: 16px; display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+}
+.format-card h3 { font-family: var(--serif); font-size: 22px; margin-bottom: 8px; }
+.format-card p { color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <div class="left"><span>Lomas del Río · Naucalpan, EdoMex</span></div>
+    <div class="right"><span>Lun–Dom · 7:00 a 23:00</span><a href="#login">Acceso Socios</a></div>
+  </div>
+</div>
+
+<div class="nav-wrap">
+<nav class="nav" id="nav">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <img class="mark" src="assets/logo-mark.svg" alt="">
+      <span class="name"><span class="top">Lomas del Río</span><span class="bot">PÁDEL</span></span>
+    </a>
+    <div class="menu">
+      <a href="index.html#club">El Club</a>
+      <a href="index.html#canchas">Instalaciones</a>
+      <a href="membresias.html">Membresías</a>
+      <a href="academia.html">Academia</a>
+      <a href="torneos.html">Torneos</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+    <div class="cta-group">
+      <a href="reservas.html" class="btn btn-gold">Reservar cancha</a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+</div>
+
+<section class="page-hero" style="background: linear-gradient(120deg, rgba(10,61,42,0.85), rgba(10,61,42,0.45)), url('https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1600&q=80') center/cover;">
+  <div class="container">
+    <div class="crumbs"><a href="index.html">Inicio</a><span class="sep">/</span><span>Torneos & Ligas</span></div>
+    <span class="eyebrow" style="color:var(--gold-400);">Calendario competitivo 2026</span>
+    <h1>Compite, gana<br>y construye comunidad</h1>
+    <p>Un torneo interno mensual, ligas semestrales por nivel, dos torneos abiertos al año y nuestro signature: Lomas del Río Open.</p>
+  </div>
+</section>
+
+<!-- SIGNATURE EVENT TOP -->
+<section class="bg-cream" style="padding-bottom: 60px;">
+  <div class="container">
+    <div class="signature-event reveal" id="open">
+      <div class="ornament"></div>
+      <span class="eyebrow" style="color: var(--gold-400);">Torneo Signature · Anual</span>
+      <h2><span class="script">Lomas del Río</span><br>Open 2026</h2>
+      <p>Tres días de competencia, ocho categorías y la mejor experiencia competitiva del corredor Naucalpan–Satélite. Cobertura mediática local, premios mayores y patrocinadores nacionales.</p>
+      <div class="open-stats">
+        <div><div class="num">15-17</div><div class="lbl">Noviembre 2026</div></div>
+        <div><div class="num">8</div><div class="lbl">Categorías</div></div>
+        <div><div class="num">$250K</div><div class="lbl">En premios y bolsas</div></div>
+        <div><div class="num">128</div><div class="lbl">Cupos para parejas</div></div>
+      </div>
+      <div style="margin-top: 32px; display: flex; gap: 14px; flex-wrap: wrap;">
+        <a href="#inscripcion" class="btn btn-gold">Inscribirme</a>
+        <a href="contacto.html#patrocinios" class="btn btn-light">Quiero patrocinar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALENDAR -->
+<section class="bg-paper">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Próximos eventos</span>
+      <h2>Calendario 2026</h2>
+      <p>Filtra por categoría para encontrar el torneo o liga ideal para ti.</p>
+    </div>
+    <div class="filter-bar reveal">
+      <button class="filter-pill active" data-filter="all">Todos</button>
+      <button class="filter-pill" data-filter="abierto">Torneos abiertos</button>
+      <button class="filter-pill" data-filter="liga">Ligas</button>
+      <button class="filter-pill" data-filter="clinica">Clínicas</button>
+      <button class="filter-pill" data-filter="infantil">Infantil</button>
+      <button class="filter-pill" data-filter="corp">Corporativo</button>
+    </div>
+
+    <div class="tournament-list">
+      <div class="tournament reveal" data-cat="abierto">
+        <div class="date"><div class="day">17</div><div class="month">May</div></div>
+        <div>
+          <h4>Copa Lomas Mayo · Mixtos</h4>
+          <div class="meta">
+            <span>📍 Canchas 1–6</span>
+            <span>🕐 9:00 am</span>
+            <span>👥 32 parejas</span>
+            <span>💰 $1,200 / pareja</span>
+          </div>
+        </div>
+        <span class="level">Nivel 3 — 5</span>
+        <a href="#inscripcion" class="btn btn-ghost">Inscribirse</a>
+      </div>
+
+      <div class="tournament reveal" data-cat="corp">
+        <div class="date"><div class="day">07</div><div class="month">Jun</div></div>
+        <div>
+          <h4>Liga Corporativa · Apertura</h4>
+          <div class="meta">
+            <span>📍 Canchas 3–6 + Futbol</span>
+            <span>🕐 6:00 pm</span>
+            <span>👥 12 equipos</span>
+            <span>💰 $8,000 / equipo</span>
+          </div>
+        </div>
+        <span class="level">Empresas</span>
+        <a href="#inscripcion" class="btn btn-ghost">Inscribir equipo</a>
+      </div>
+
+      <div class="tournament reveal" data-cat="clinica">
+        <div class="date"><div class="day">28</div><div class="month">Jun</div></div>
+        <div>
+          <h4>Clínica Magistral · Coach Invitado</h4>
+          <div class="meta">
+            <span>📍 Cancha Central</span>
+            <span>🕐 10:00 am</span>
+            <span>👥 16 cupos</span>
+            <span>💰 $1,200 / persona</span>
+          </div>
+        </div>
+        <span class="level">Todos los niveles</span>
+        <a href="#inscripcion" class="btn btn-ghost">Reservar lugar</a>
+      </div>
+
+      <div class="tournament reveal" data-cat="infantil">
+        <div class="date"><div class="day">12</div><div class="month">Jul</div></div>
+        <div>
+          <h4>Torneo Infantil de Verano</h4>
+          <div class="meta">
+            <span>📍 Canchas 1–4</span>
+            <span>🕐 9:00 am</span>
+            <span>👥 Sub-12 / Sub-14</span>
+            <span>💰 $600 / niño</span>
+          </div>
+        </div>
+        <span class="level">Junior</span>
+        <a href="#inscripcion" class="btn btn-ghost">Inscribir</a>
+      </div>
+
+      <div class="tournament reveal" data-cat="liga">
+        <div class="date"><div class="day">02</div><div class="month">Ago</div></div>
+        <div>
+          <h4>Liga Interna Verano · Por niveles</h4>
+          <div class="meta">
+            <span>📍 Todas las canchas</span>
+            <span>🕐 18:00 / 20:00</span>
+            <span>👥 24 parejas</span>
+            <span>💰 $2,400 / pareja</span>
+          </div>
+        </div>
+        <span class="level">3, 4, 5</span>
+        <a href="#inscripcion" class="btn btn-ghost">Inscribirse</a>
+      </div>
+
+      <div class="tournament reveal" data-cat="abierto">
+        <div class="date"><div class="day">20</div><div class="month">Sep</div></div>
+        <div>
+          <h4>Copa Independencia · Mixtos & Femenil</h4>
+          <div class="meta">
+            <span>📍 Canchas 1–6</span>
+            <span>🕐 9:00 am</span>
+            <span>👥 48 parejas</span>
+            <span>💰 $1,400 / pareja</span>
+          </div>
+        </div>
+        <span class="level">Nivel 2 — 6</span>
+        <a href="#inscripcion" class="btn btn-ghost">Inscribirse</a>
+      </div>
+
+      <div class="tournament reveal" data-cat="corp">
+        <div class="date"><div class="day">04</div><div class="month">Oct</div></div>
+        <div>
+          <h4>Liga Corporativa · Clausura</h4>
+          <div class="meta">
+            <span>📍 Canchas 3–6</span>
+            <span>🕐 6:00 pm</span>
+            <span>👥 16 equipos</span>
+            <span>💰 $9,500 / equipo</span>
+          </div>
+        </div>
+        <span class="level">Empresas</span>
+        <a href="#inscripcion" class="btn btn-ghost">Inscribir equipo</a>
+      </div>
+
+      <div class="tournament reveal" data-cat="abierto">
+        <div class="date"><div class="day">15</div><div class="month">Nov</div></div>
+        <div>
+          <h4>Lomas del Río Open 2026 (Signature)</h4>
+          <div class="meta">
+            <span>📍 Cancha central</span>
+            <span>🕐 3 días</span>
+            <span>👥 128 parejas</span>
+            <span>💰 desde $1,800 / pareja</span>
+          </div>
+        </div>
+        <span class="level">Todos los niveles</span>
+        <a href="#open" class="btn btn-gold">Inscribirme</a>
+      </div>
+
+      <div class="tournament reveal" data-cat="clinica">
+        <div class="date"><div class="day">14</div><div class="month">Dic</div></div>
+        <div>
+          <h4>Clínica de cierre con coach internacional</h4>
+          <div class="meta">
+            <span>📍 Canchas 1–2</span>
+            <span>🕐 10:00 am</span>
+            <span>👥 12 cupos</span>
+            <span>💰 $2,400 / persona</span>
+          </div>
+        </div>
+        <span class="level">Avanzado</span>
+        <a href="#inscripcion" class="btn btn-ghost">Reservar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATS -->
+<section class="bg-cream">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Formatos</span>
+      <h2>Hay un torneo para cada jugador</h2>
+    </div>
+    <div class="format-grid">
+      <div class="format-card reveal">
+        <div class="ico">🏆</div>
+        <h3>Torneo Mensual</h3>
+        <p>Cada mes, formato corto, premiación de fin de tarde. Ideal para mantenerte activo competitivamente.</p>
+      </div>
+      <div class="format-card reveal">
+        <div class="ico">📅</div>
+        <h3>Liga Semestral</h3>
+        <p>Compites cada semana en jornada fija. Ranking en vivo, premiación final con copa y bolsa.</p>
+      </div>
+      <div class="format-card reveal">
+        <div class="ico">⭐</div>
+        <h3>Torneo Signature</h3>
+        <p>Lomas del Río Open. Tres días, ocho categorías, premios mayores. La cita anual del club.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RANKING -->
+<section class="bg-paper" id="ranking">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Ranking interno</span>
+      <h2>Top 10 del club</h2>
+      <p>Ranking actualizado al cierre de cada torneo y liga.</p>
+    </div>
+    <div class="ranking-table reveal">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Jugador</th><th>Torneos</th><th>Puntos</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="rank-num">1</span></td><td><span class="player"><img class="avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80" alt="">Roberto Cárdenas</span></td><td>14</td><td class="points">2,840</td></tr>
+          <tr><td><span class="rank-num">2</span></td><td><span class="player"><img class="avatar" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&q=80" alt="">Andrea Vázquez</span></td><td>12</td><td class="points">2,610</td></tr>
+          <tr><td><span class="rank-num">3</span></td><td><span class="player"><img class="avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80" alt="">Mariana Reyes</span></td><td>11</td><td class="points">2,380</td></tr>
+          <tr><td><span class="rank-num">4</span></td><td><span class="player"><img class="avatar" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=200&q=80" alt="">Diego Martínez</span></td><td>13</td><td class="points">2,250</td></tr>
+          <tr><td><span class="rank-num">5</span></td><td><span class="player"><img class="avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80" alt="">Esteban Ríos</span></td><td>9</td><td class="points">1,980</td></tr>
+          <tr><td><span class="rank-num">6</span></td><td><span class="player"><img class="avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80" alt="">Luisa Hernández</span></td><td>10</td><td class="points">1,840</td></tr>
+          <tr><td><span class="rank-num">7</span></td><td><span class="player"><img class="avatar" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=200&q=80" alt="">Carlos Aguilar</span></td><td>8</td><td class="points">1,710</td></tr>
+          <tr><td><span class="rank-num">8</span></td><td><span class="player"><img class="avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80" alt="">Patricia Solís</span></td><td>9</td><td class="points">1,580</td></tr>
+          <tr><td><span class="rank-num">9</span></td><td><span class="player"><img class="avatar" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=200&q=80" alt="">Iván Rodríguez</span></td><td>7</td><td class="points">1,420</td></tr>
+          <tr><td><span class="rank-num">10</span></td><td><span class="player"><img class="avatar" src="https://images.unsplash.com/photo-1488161628813-04466f872be2?w=200&q=80" alt="">Sofía Torres</span></td><td>8</td><td class="points">1,360</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- INSCRIPCION -->
+<section class="bg-cream" id="inscripcion">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Inscripción</span>
+      <h2>Inscríbete a un torneo</h2>
+      <p>Te confirmamos cupo en menos de 24 horas. Pago seguro vía link, factura disponible.</p>
+    </div>
+    <form class="contact-form reveal" style="max-width:720px; margin:0 auto;" onsubmit="event.preventDefault(); alert('¡Recibido! Te confirmamos cupo en menos de 24 horas.');">
+      <h3>Pareja / equipo</h3>
+      <div class="form-row">
+        <div class="field"><label>Jugador 1 — Nombre</label><input type="text" placeholder="Nombre completo"></div>
+        <div class="field"><label>Jugador 1 — Nivel</label><select><option>Nivel 2</option><option>Nivel 3</option><option>Nivel 4</option><option>Nivel 5</option><option>Nivel 6</option></select></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Jugador 2 — Nombre</label><input type="text" placeholder="Nombre completo"></div>
+        <div class="field"><label>Jugador 2 — Nivel</label><select><option>Nivel 2</option><option>Nivel 3</option><option>Nivel 4</option><option>Nivel 5</option><option>Nivel 6</option></select></div>
+      </div>
+      <h3 style="margin-top: 18px;">Torneo</h3>
+      <div class="field" style="margin-bottom: 16px;">
+        <label>Selecciona evento</label>
+        <select>
+          <option>Copa Lomas Mayo · 17 May 2026</option>
+          <option>Liga Corporativa Apertura · 7 Jun 2026</option>
+          <option>Clínica Magistral · 28 Jun 2026</option>
+          <option>Torneo Infantil Verano · 12 Jul 2026</option>
+          <option>Liga Interna Verano · 2 Ago 2026</option>
+          <option>Copa Independencia · 20 Sep 2026</option>
+          <option>Liga Corporativa Clausura · 4 Oct 2026</option>
+          <option>Lomas del Río Open · 15-17 Nov 2026</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Email contacto</label><input type="email" placeholder="contacto@email.com"></div>
+        <div class="field"><label>Teléfono</label><input type="tel" placeholder="55 0000 0000"></div>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Inscribir y solicitar link de pago →</button>
+    </form>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="brand"><img class="mark" src="assets/logo-mark.svg" alt="" style="width:56px;height:56px;"><span class="name"><span class="top">Lomas del Río</span><span class="bot">PÁDEL</span></span></a>
+        <p class="about-foot">El club deportivo de referencia del corredor Naucalpan–Satélite.</p>
+      </div>
+      <div><h5>Club</h5><ul><li><a href="index.html#club">Sobre nosotros</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+      <div><h5>Deporte</h5><ul><li><a href="reservas.html">Reservar</a></li><li><a href="membresias.html">Membresías</a></li><li><a href="academia.html">Academia</a></li><li><a href="torneos.html">Torneos</a></li></ul></div>
+      <div><h5>Empresas</h5><ul><li><a href="index.html#eventos">Eventos privados</a></li><li><a href="index.html#patrocinios">Patrocinios</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><div>© 2026 Club de Pádel Lomas del Río · Naucalpan, EdoMex</div><div><a href="#">Aviso de privacidad</a></div></div>
+  </div>
+</footer>
+
+<a href="https://wa.me/525500000000" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24z"/></svg>
+</a>
+
+<script src="script.js"></script>
+</body>
+</html>
