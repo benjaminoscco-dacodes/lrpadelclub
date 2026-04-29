@@ -185,6 +185,7 @@ function pickNameFromPayload(p) {
           headers: {
             apikey: cfg.anonKey,
             Authorization: `Bearer ${cfg.anonKey}`,
+            Accept: 'application/json',
             'Content-Type': 'application/json',
             Prefer: 'return=minimal'
           },
@@ -193,7 +194,13 @@ function pickNameFromPayload(p) {
 
         if (!res.ok) {
           const errText = await res.text();
-          throw new Error(errText || res.statusText);
+          let detail = errText;
+          try {
+            const j = JSON.parse(errText);
+            detail = j.message || j.hint || j.details || errText;
+          } catch (_) {}
+          console.error('Supabase POST form_submissions', res.status, detail);
+          throw new Error(detail || res.statusText);
         }
 
         const msg = FORM_SUCCESS[key];
@@ -208,7 +215,12 @@ function pickNameFromPayload(p) {
         form.reset();
       } catch (err) {
         console.error(err);
-        alert('No se pudo enviar el formulario. Intenta de nuevo o escríbenos por WhatsApp.');
+        const hint = err && err.message ? String(err.message).slice(0, 240) : '';
+        alert(
+          hint
+            ? `No se pudo enviar el formulario.\n\nDetalle: ${hint}\n\nSi dice «row-level security», en Supabase ejecuta el SQL del archivo supabase/002_fix_insert_policy.sql`
+            : 'No se pudo enviar el formulario. Intenta de nuevo o escríbenos por WhatsApp.'
+        );
       } finally {
         if (submitBtn) submitBtn.disabled = false;
       }

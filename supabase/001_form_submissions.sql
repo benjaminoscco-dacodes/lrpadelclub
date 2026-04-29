@@ -17,12 +17,12 @@ create index if not exists form_submissions_created_at_idx on public.form_submis
 
 alter table public.form_submissions enable row level security;
 
--- Solo inserción anónima desde el navegador (clave anon + RLS).
+-- Inserción desde el navegador (rol anon vía API). Sin TO anon: aplica a todos los roles con GRANT insert.
 drop policy if exists "anon puede insertar envíos" on public.form_submissions;
-create policy "anon puede insertar envíos"
+drop policy if exists "insert desde sitio web" on public.form_submissions;
+create policy "insert desde sitio web"
   on public.form_submissions
   for insert
-  to anon
   with check (true);
 
 -- La lectura en el panel de Supabase usa el rol de servicio / bypass del dashboard;
