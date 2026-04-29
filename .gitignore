@@ -1,3 +1,6 @@
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Generado en deploy (Vercel) o en local: copia config.example.js → config.js y rellena.
+config.js

@@ -108,3 +108,110 @@ document.querySelectorAll('.filter-pill').forEach(pill => {
     });
   });
 });
+
+// —— Supabase: form_submissions (opción A, una tabla) ——
+const FORM_SUCCESS = {
+  contacto: '¡Mensaje enviado! Te responderemos en menos de 1 hora hábil.',
+  index_contacto: '¡Gracias! Te contactaremos en menos de 1 hora hábil.',
+  newsletter: '¡Suscripción confirmada!',
+  torneos_inscripcion: '¡Recibido! Te confirmamos cupo en menos de 24 horas.',
+  academia_inscripcion: '¡Recibido! Te contactamos en menos de 1 hora hábil.',
+  membresias: '¡Recibido! Te contactaremos en menos de 1 hora.',
+  quick_reserva: null
+};
+
+function supabaseConfigOk(cfg) {
+  return Boolean(
+    cfg &&
+    typeof cfg.url === 'string' &&
+    cfg.url.length > 10 &&
+    typeof cfg.anonKey === 'string' &&
+    cfg.anonKey.length > 20
+  );
+}
+
+function formDataToPayload(form) {
+  const fd = new FormData(form);
+  const payload = {};
+  fd.forEach((value, key) => {
+    if (Object.prototype.hasOwnProperty.call(payload, key)) {
+      const prev = payload[key];
+      payload[key] = Array.isArray(prev) ? [...prev, value] : [prev, value];
+    } else {
+      payload[key] = value;
+    }
+  });
+  return payload;
+}
+
+function pickEmailFromPayload(p) {
+  const v = (p.email || p.correo || '').toString().trim();
+  return v || null;
+}
+
+function pickNameFromPayload(p) {
+  const v = (p.nombre || p.nombre_completo || p.alumno_nombre || '').toString().trim();
+  return v || null;
+}
+
+(function initFormSubmissions() {
+  document.querySelectorAll('form[data-form-key]').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const key = form.dataset.formKey;
+      if (!key) return;
+
+      const cfg = window.__SUPABASE_CONFIG__;
+      if (!supabaseConfigOk(cfg)) {
+        alert('Configura Supabase: en Vercel añade SUPABASE_URL y SUPABASE_ANON_KEY, o copia config.example.js como config.js en local.');
+        return;
+      }
+
+      const base = cfg.url.replace(/\/$/, '');
+      const submitBtn = form.querySelector('[type="submit"]');
+      if (submitBtn) submitBtn.disabled = true;
+
+      const payload = formDataToPayload(form);
+      const row = {
+        form_key: key,
+        payload,
+        email: pickEmailFromPayload(payload),
+        name: pickNameFromPayload(payload)
+      };
+
+      try {
+        const res = await fetch(`${base}/rest/v1/form_submissions`, {
+          method: 'POST',
+          headers: {
+            apikey: cfg.anonKey,
+            Authorization: `Bearer ${cfg.anonKey}`,
+            'Content-Type': 'application/json',
+            Prefer: 'return=minimal'
+          },
+          body: JSON.stringify(row)
+        });
+
+        if (!res.ok) {
+          const errText = await res.text();
+          throw new Error(errText || res.statusText);
+        }
+
+        const msg = FORM_SUCCESS[key];
+        if (msg) alert(msg);
+
+        if (key === 'quick_reserva' && form.dataset.afterSubmit === 'navigate') {
+          const dest = form.getAttribute('action') || 'reservas.html';
+          window.location.href = dest;
+          return;
+        }
+
+        form.reset();
+      } catch (err) {
+        console.error(err);
+        alert('No se pudo enviar el formulario. Intenta de nuevo o escríbenos por WhatsApp.');
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    });
+  });
+})();

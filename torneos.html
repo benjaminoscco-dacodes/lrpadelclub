@@ -341,20 +341,20 @@
       <h2>Inscríbete a un torneo</h2>
       <p>Te confirmamos cupo en menos de 24 horas. Pago seguro vía link, factura disponible.</p>
     </div>
-    <form class="contact-form reveal" style="max-width:720px; margin:0 auto;" onsubmit="event.preventDefault(); alert('¡Recibido! Te confirmamos cupo en menos de 24 horas.');">
+    <form class="contact-form reveal" style="max-width:720px; margin:0 auto;" data-form-key="torneos_inscripcion" method="post" action="#">
       <h3>Pareja / equipo</h3>
       <div class="form-row">
-        <div class="field"><label>Jugador 1 — Nombre</label><input type="text" placeholder="Nombre completo"></div>
-        <div class="field"><label>Jugador 1 — Nivel</label><select><option>Nivel 2</option><option>Nivel 3</option><option>Nivel 4</option><option>Nivel 5</option><option>Nivel 6</option></select></div>
+        <div class="field"><label>Jugador 1 — Nombre</label><input type="text" name="jugador1_nombre" placeholder="Nombre completo" required></div>
+        <div class="field"><label>Jugador 1 — Nivel</label><select name="jugador1_nivel"><option>Nivel 2</option><option>Nivel 3</option><option>Nivel 4</option><option>Nivel 5</option><option>Nivel 6</option></select></div>
       </div>
       <div class="form-row">
-        <div class="field"><label>Jugador 2 — Nombre</label><input type="text" placeholder="Nombre completo"></div>
-        <div class="field"><label>Jugador 2 — Nivel</label><select><option>Nivel 2</option><option>Nivel 3</option><option>Nivel 4</option><option>Nivel 5</option><option>Nivel 6</option></select></div>
+        <div class="field"><label>Jugador 2 — Nombre</label><input type="text" name="jugador2_nombre" placeholder="Nombre completo" required></div>
+        <div class="field"><label>Jugador 2 — Nivel</label><select name="jugador2_nivel"><option>Nivel 2</option><option>Nivel 3</option><option>Nivel 4</option><option>Nivel 5</option><option>Nivel 6</option></select></div>
       </div>
       <h3 style="margin-top: 18px;">Torneo</h3>
       <div class="field" style="margin-bottom: 16px;">
         <label>Selecciona evento</label>
-        <select>
+        <select name="evento">
           <option>Copa Lomas Mayo · 17 May 2026</option>
           <option>Liga Corporativa Apertura · 7 Jun 2026</option>
           <option>Clínica Magistral · 28 Jun 2026</option>
@@ -366,8 +366,8 @@
         </select>
       </div>
       <div class="form-row">
-        <div class="field"><label>Email contacto</label><input type="email" placeholder="contacto@email.com"></div>
-        <div class="field"><label>Teléfono</label><input type="tel" placeholder="55 0000 0000"></div>
+        <div class="field"><label>Email contacto</label><input type="email" name="correo" placeholder="contacto@email.com" required></div>
+        <div class="field"><label>Teléfono</label><input type="tel" name="telefono" placeholder="55 0000 0000"></div>
       </div>
       <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Inscribir y solicitar link de pago →</button>
     </form>
@@ -393,6 +393,8 @@
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24z"/></svg>
 </a>
 
+<script>window.__SUPABASE_CONFIG__ = window.__SUPABASE_CONFIG__ || {};</script>
+<script src="config.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
